@@ -1,9 +1,12 @@
 var path = require( 'path' );
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    ctrl: './src/banner_ctrl.js',
+    var:  './src/banner_var.js',
+  },
   output: {
-    filename: 'bundle.js',
+    filename: 'banner_[name].js',
     path: path.resolve( __dirname, 'dist' )
   },
   module: {
