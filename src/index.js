@@ -1,4 +1,5 @@
-var bcontent = require('./banner.html');
+var bcontent = require('./banner.html'),
+    styles = require( './styles.css' );
 
 var banner = document.getElementById( 'banner' );
-banner.innerHTML = bcontent;//'It <strong>works</strong>';
+banner.innerHTML = bcontent;
