@@ -1,5 +1,5 @@
 var bannerTemplate = require('./banner_ctrl.handlebars'),
-    styles = require( './styles.css' );
+    styles = require( './display_banner.css' );
 
-var banner = document.getElementById( 'banner' );
-banner.innerHTML = bannerTemplate( { name: 'Bruce Banner' } );
+var banner = document.getElementById( 'WMDE-Banner-Container' );
+banner.innerHTML = bannerTemplate( { email: 'gabriel.birke@wikimedia.de' } );
