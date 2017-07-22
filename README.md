@@ -37,8 +37,9 @@ Until there is an upload tool, you need to copy and paste the compiled banner co
 - [x] Use webpack web server for previews
 - [x] Use [HOT module replacement](https://webpack.js.org/guides/hot-module-replacement/) for automatic refresh in browser.
 - [x] Add production config for webpack
-- [ ] Test how webpack handles modules with external jQuery references
+- [x] Test how webpack handles JavaScript that calls jQuery without requiring it.
 - [ ] Create upload plugin that wraps the generated JS (see above) and sends it to CentralNotice
+- [ ] Add Dockerfile
 
 ## Random ideas
 * Move index.html out of `dist` into `public` folder and use different values for `devServer.contentBase` and `devServer.publicPath` ?

@@ -17,7 +17,7 @@ module.exports = Merge( CommonConfig, {
       beautify: false,
       mangle: {
         screw_ie8: true,
-        keep_fnames: true
+        keep_fnames: true,
         except: [ '$', 'exports', 'require' ]
       },
       comments: false
