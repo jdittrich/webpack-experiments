@@ -23,7 +23,7 @@ module.exports = {
             ]
         },
         {
-            test: /\.handlebars$/,
+            test: /\.handlebars$|\.hbs$/,
             use: [
               { loader: 'handlebars-loader' }
             ]
