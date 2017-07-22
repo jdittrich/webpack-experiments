@@ -1,6 +1,10 @@
 var path = require( 'path' );
+var webpack = require('webpack');
 
 module.exports = {
+    plugins: [
+      new webpack.HotModuleReplacementPlugin()
+  ],
   entry: {
     ctrl: './src/banner_ctrl.js',
     var:  './src/banner_var.js',
@@ -31,6 +35,7 @@ module.exports = {
     ]
   },
   devServer: {
+      hot: true,
       contentBase: './dist'
   }
 };
