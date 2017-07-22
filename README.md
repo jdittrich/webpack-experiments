@@ -3,12 +3,15 @@
 This is an experiment for bundling all dependencies of WMDE fundraising banners with webpack.
 
 ## Building the assets
+To build a minified version of the banner:
 
     npm build
 
 If you want to rebuild whenever a file changes, use
 
     npm run watch
+
+This will build a development version with source maps.
 
 ## Starting the preview
 
@@ -33,8 +36,9 @@ Until there is an upload tool, you need to copy and paste the compiled banner co
 - [x] Use template engine to render HTML
 - [x] Use webpack web server for previews
 - [x] Use [HOT module replacement](https://webpack.js.org/guides/hot-module-replacement/) for automatic refresh in browser.
-- [ ] Add production config for webpack
-- [ ] Create upload plugin that wraps the generated JS in script tags and sends it to CentralNotice
+- [x] Add production config for webpack
+- [ ] Test how webpack handles modules with external jQuery references
+- [ ] Create upload plugin that wraps the generated JS (see above) and sends it to CentralNotice
 
 ## Random ideas
 * Move index.html out of `dist` into `public` folder and use different values for `devServer.contentBase` and `devServer.publicPath` ?

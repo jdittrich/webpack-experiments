@@ -1,12 +1,12 @@
 {
   "name": "banners-webpack",
   "version": "1.0.0",
-  "description": "",
+  "description": "Building WMDE banners with webpack",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
-    "build": "webpack",
+    "build": "webpack --config webpack.production.js",
     "start": "webpack-dev-server"
   },
   "keywords": [],
@@ -19,6 +19,7 @@
     "html-loader": "^0.4.5",
     "style-loader": "^0.18.2",
     "webpack": "^3.3.0",
-    "webpack-dev-server": "^2.5.1"
+    "webpack-dev-server": "^2.5.1",
+    "webpack-merge": "^4.1.0"
   }
 }
