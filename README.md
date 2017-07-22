@@ -5,7 +5,7 @@ This is an experiment for bundling all dependencies of WMDE fundraising banners 
 ## Building the assets
 To build a minified version of the banner:
 
-    npm build
+    npm run build
 
 If you want to rebuild whenever a file changes, use
 
