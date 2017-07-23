@@ -3,12 +3,16 @@ require( './icons.css' );
 require( './wlightbox.css' );
 require( './DesktopBannerOverride.css' ); // this was formally in-banner CSS. TODO: Merge with Desktopbanner, only keep override CSS
 
-// global module name space. Remove when all JS has been converted to common.js modules that can be required/imported
-var fundraisingBanner = {};
+const bannerCloseTrackRatio = 0.01;
 
-// TODO require Global banner values (compatible with on-wiki override)
-// TODO remove parameter placeholder from Desktop banner
-require( './DesktopBanner' );
+
+// global module name space. Remove when all JS has been converted to common.js modules that can be required/imported
+const fundraisingBanner = {};
+
+const DevGlobalBannerSettings = require( './GlobalBannerSettings' );
+const GlobalBannerSettings = window.GlobalBannerSettings || DevGlobalBannerSettings;
+const Translations = {}; // will only be needed for English banner, German defaults are in DesktopBanner
+const BannerFunctions = require( './DesktopBanner' )( GlobalBannerSettings, Translations, bannerCloseTrackRatio );
 // TODO TrackSizeIssues.js
 // TODO CountCampaignDays.js
 // TODO CustomDayName.js
@@ -16,9 +20,9 @@ require( './DesktopBanner' );
 
 // TODO progress bar partial, css and JS
 
-var bannerTemplate = require('./banner_ctrl.hbs');
+const bannerTemplate = require('./banner_ctrl.hbs');
 
-var $banner = $( '#WMDE-Banner-Container' );
+const $banner = $( '#WMDE-Banner-Container' );
 $banner.html( bannerTemplate( {
     // TODO custom day name,
     // TODO day of the week

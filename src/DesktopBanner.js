@@ -1,22 +1,20 @@
 /*jshint latedef: nofunc */
 /*jshint unused: false */
-/* globals mw, alert, GlobalBannerSettings */
+/* globals mw, alert */
+module.exports = function ( GlobalBannerSettings, Translations, bannerCloseTrackRatio ) {
 var finalDateTime = new Date( 2017, 11, 31, 23, 59, 59 ),
-	/* jshint -W079 */
-	GlobalBannerSettings = typeof GlobalBannerSettings !== 'undefined' ? GlobalBannerSettings : {},
-	/* jshint +W079 */
-	baseDate = replaceWikiVars( '{{{donations-date-base}}}' ),
-	collectedBase = parseInt( replaceWikiVars( '{{{donations-collected-base}}}' ), 10 ),
-	donorsBase = parseInt( replaceWikiVars( '{{{donators-base}}}' ), 10 ),
-	donationsPerMinApproximation = parseFloat( replaceWikiVars( '{{{appr-donations-per-minute}}}' ) ),
-	donorsPerMinApproximation = parseFloat( replaceWikiVars( '{{{appr-donators-per-minute}}}' ) ),
-	noIntervalSelectedMessage = replaceWikiVars( '{{{no-interval-message}}}' ) || 'Bitte wählen Sie zuerst ein Zahlungsintervall.',
-	amountEmptyMessage = replaceWikiVars( '{{{amount-empty-message}}}' ) || 'Bitte wählen Sie zuerst einen Betrag.',
-	amountTooLowMessage = replaceWikiVars( '{{{amount-too-low-message}}}' ) || 'Bitte geben Sie einen Spendenbetrag von min. 1€ ein.',
-	amountTooHighMessage = replaceWikiVars( '{{{amount-too-high-message}}}' ) || 'Der Spendenbetrag ist zu hoch.',
+	baseDate = GlobalBannerSettings[ 'donations-date-base' ] || '2017-11-01',
+	collectedBase = parseInt( GlobalBannerSettings.collectedBase || 0, 10 ),
+	donorsBase = parseInt( GlobalBannerSettings.donorsBase, 10 ),
+	donationsPerMinApproximation = parseFloat( GlobalBannerSettings[ 'appr-donations-per-minute' ] || 0.1 ),
+	donorsPerMinApproximation = parseFloat( GlobalBannerSettings[ 'appr-donators-per-minute' ] ),
+	noIntervalSelectedMessage = Translations[ 'no-interval-message' ] || 'Bitte wählen Sie zuerst ein Zahlungsintervall.',
+	amountEmptyMessage = Translations[ 'amount-empty-message' ] || 'Bitte wählen Sie zuerst einen Betrag.',
+	amountTooLowMessage = Translations[ 'amount-too-low-message' ] || 'Bitte geben Sie einen Spendenbetrag von min. 1€ ein.',
+	amountTooHighMessage = Translations[ 'amount-too-high-message' ] || 'Der Spendenbetrag ist zu hoch.',
 	allBannersImpCookie = 'centralnotice_banner_impression_count',
 	singleBannerImpCookie = 'centralnotice_single_banner_impression_count',
-	bannerCloseTrackRatio = replaceWikiVars( '{{{banner-close-track-ratio}}}' ) || 0.01,
+	bannerCloseTrackRatio = bannerCloseTrackRatio || 0.01,
 	showBanner = true,
 	BannerEventHandlers = BannerEventHandlers || {},
 	messages = {
@@ -313,10 +311,6 @@ function validateForm() {
 }
 
 function showAmountError( text ) {
-	if ( !bannerHasValidationEventHandling() ) {
-		alert( text );
-		return;
-	}
 	$( '#WMDE_Banner' ).trigger( 'validation:amount:error', text );
 }
 
@@ -325,10 +319,6 @@ function hideAmountError() {
 }
 
 function showFrequencyError( text ) {
-	if ( !bannerHasValidationEventHandling() ) {
-		alert( text );
-		return;
-	}
 	$( '#WMDE_Banner' ).trigger( 'validation:period:error', text );
 }
 
@@ -532,19 +522,6 @@ function getRemainingDonorsNeeded( averageDonation ) {
 	return Math.max( 0, numDonors );
 }
 
-function replaceWikiVars( text ) {
-	var re = /\{\{\{([^\}]+)\}\}\}/g,
-		wikiVarMatch;
-	while ( ( wikiVarMatch = re.exec( text ) ) !== null ) {
-		if ( GlobalBannerSettings[ wikiVarMatch[ 1 ] ] ) {
-			text = text.replace( wikiVarMatch[ 0 ], GlobalBannerSettings[ wikiVarMatch[ 1 ] ] );
-		} else {
-			text = text.replace( wikiVarMatch[ 0 ], '' );
-		}
-	}
-	return text;
-}
-
 function getSkin() {
 	if ( onMediaWiki() ) {
 		return mw.config.get( 'skin' );
@@ -554,4 +531,8 @@ function getSkin() {
 
 function onMediaWiki() {
 	return typeof mw === 'object' && typeof mw.centralNotice !== 'undefined';
+}
+return {
+
+}
 }

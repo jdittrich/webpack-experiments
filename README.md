@@ -24,6 +24,7 @@ The web server is at http://localhost:8080/
 Until there is an upload tool, you need to copy and paste the compiled banner code form the `dist` directory into the CentralNotice text field. Wrap it as follows:
 
     <div id="WMDE-Banner-Container">
+    <script>{{MediaWiki:WMDE_FR2017/Resources/BannerValues.js}}</script>
     <nowiki><script>
     // banner code here
     </script></nowiki>

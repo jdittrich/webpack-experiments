@@ -1,0 +1,13 @@
+module.exports = {
+    goalSum: 8600000,
+    'donations-date-base': '2017-07-05',
+    'donations-collected-base': 0,
+    'donators-base': 0,
+    'appr-donations-per-minute': 10,
+    'appr-donators-per-minute': 1,
+    'milion-impressions-per-day': 8,
+    allBannersCookie: 'banner_impression_count',
+    singleBannerCookie: 'single_banner_impression_count',
+    'campaign-start-date': '2017-07-06',
+    'banner-close-track-ratio': 1,
+};
