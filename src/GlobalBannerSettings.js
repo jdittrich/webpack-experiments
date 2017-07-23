@@ -8,6 +8,7 @@ module.exports = {
     'milion-impressions-per-day': 8,
     allBannersCookie: 'banner_impression_count',
     singleBannerCookie: 'single_banner_impression_count',
-    'campaign-start-date': '2017-07-06',
+    'campaign-start-date': '2017-11-06',
+    'campaign-end-date': '2017-12-31',
     'banner-close-track-ratio': 1,
 };

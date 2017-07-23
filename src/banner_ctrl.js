@@ -16,7 +16,7 @@ const GlobalBannerSettings = window.GlobalBannerSettings || DevGlobalBannerSetti
 const Translations = {}; // will only be needed for English banner, German defaults are in DesktopBanner
 const BannerFunctions = require( './DesktopBanner' )( GlobalBannerSettings, Translations, bannerCloseTrackRatio );
 const SizeIssues = require( './track_size_issues' );
-// TODO CountCampaignDays.js
+const getCampaignDaySentence = require( './count_campaign_days' )( GlobalBannerSettings[ 'campaign-start-date' ], GlobalBannerSettings[ 'campaign-end-date' ] );
 const getCustomDayName = require( './custom_day_name' );
 // TODO wlightbox.js
 
@@ -36,6 +36,7 @@ $banner.html( bannerTemplate( {
     customDayName: customDayName,
     currentDayName: currentDayName,
     weekdayPrepPhrase: weekdayPrepPhrase,
+    campaignDaySentence: getCampaignDaySentence( LANGUAGE ),
     daysRemaining: BannerFunctions.getDaysRemaining( LANGUAGE ),
     CampaignName: CampaignName,
     BannerName: BannerName
