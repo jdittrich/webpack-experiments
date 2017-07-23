@@ -6,7 +6,7 @@ require( './DesktopBannerOverride.css' ); // this was formally in-banner CSS. TO
 // BEGIN Banner-Specific configuration
 const bannerCloseTrackRatio = 0.01;
 const CampaignName = 'C17_02_170724';
-const BannerName = 'B17_02_170724_ctrl';
+const BannerName = 'B17_02_170724_ctrl-test';
 
 const fundraisingBanner = {};
 
@@ -178,8 +178,9 @@ $( function () {
   if ( BannerFunctions.onMediaWiki() && window.mw.config.get( 'wgAction' ) !== "view" ) {
     return;
   }
+  setupValidationEventHandling();
   setTimeout( displayBanner, $( '#WMDE-BannerPreview' ).data( 'delay' ) || 7500 );
 
 } );
 
-// TODO more initialization code from banner
+// TODO lightbox initialization code from banner

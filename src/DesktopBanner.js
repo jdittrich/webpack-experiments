@@ -86,16 +86,12 @@ $( function () {
 	$( 'input:radio[name=betrag_auswahl]' ).on( 'click', BannerEventHandlers.handleAmountSelected  );
 
 	$( '#interval_tab_onetime, #interval_onetime' ).on( 'click', function () {
-		removeSpaceForIntervalOptions();
 		hideFrequencyError();
-		$( '.interval-options' ).addClass( 'interval-hidden' );
 		$( '#interval_onetime' ).prop( 'checked', true );
 		$( '#interval_multiple' ).prop( 'checked', false );
 	}  );
 
 	$( '#interval_tab_multiple, #interval_multiple' ).on( 'click', function () {
-		addSpaceForIntervalOptions();
-		$( '.interval-options' ).removeClass( 'interval-hidden' );
 		$( '#interval_multiple' ).prop( 'checked', true );
 		$( '#interval_onetime' ).prop( 'checked', false );
 	} );
