@@ -110,11 +110,6 @@ function getDaysLeft() {
 function getDaysRemaining( language ) {
 	var daysRemaining = getDaysLeft(),
 		lang = language || 'de';
-	// TODO manually hack to fix older banners from 2014
-	if ( daysRemaining === 0 ) {
-		$( '#donationRemaining' ).width( 0 );
-		$( '#donationRemaining' ).html( '' );
-	}
 	return daysRemaining + ' ' + ( daysRemaining > 1 ? messages[ lang ].days : messages[ lang ].day );
 }
 
@@ -522,6 +517,8 @@ return {
 	getSkin: getSkin,
 	validateForm: validateForm,
 	increaseImpCount: increaseImpCount,
-	increaseBannerImpCount: increaseBannerImpCount
+	increaseBannerImpCount: increaseBannerImpCount,
+	getDaysRemaining: getDaysRemaining,
+	getCurrentGermanDay: getCurrentGermanDay
 }
 }

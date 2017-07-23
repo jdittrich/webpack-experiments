@@ -7,6 +7,7 @@ require( './DesktopBannerOverride.css' ); // this was formally in-banner CSS. TO
 const bannerCloseTrackRatio = 0.01;
 const CampaignName = 'C17_02_170724';
 const BannerName = 'B17_02_170724_ctrl-test';
+const LANGUAGE = 'de';
 
 const fundraisingBanner = {};
 
@@ -16,7 +17,7 @@ const Translations = {}; // will only be needed for English banner, German defau
 const BannerFunctions = require( './DesktopBanner' )( GlobalBannerSettings, Translations, bannerCloseTrackRatio );
 const SizeIssues = require( './track_size_issues' );
 // TODO CountCampaignDays.js
-// TODO CustomDayName.js
+const getCustomDayName = require( './custom_day_name' );
 // TODO wlightbox.js
 
 // TODO progress bar partial, css and JS
@@ -25,11 +26,17 @@ const bannerTemplate = require('./banner_ctrl.hbs');
 
 const $ = require( 'jquery' );
 
+const customDayName = getCustomDayName( BannerFunctions.getCurrentGermanDay, LANGUAGE );
+const currentDayName = BannerFunctions.getCurrentGermanDay();
+const weekdayPrepPhrase = customDayName === currentDayName ? 'an diesem' : 'am heutigen';
+
 const $banner = $( '#WMDE-Banner-Container' );
 $banner.html( bannerTemplate( {
-    // TODO custom day name,
-    // TODO day of the week
     // TODO approx. donors
+    customDayName: customDayName,
+    currentDayName: currentDayName,
+    weekdayPrepPhrase: weekdayPrepPhrase,
+    daysRemaining: BannerFunctions.getDaysRemaining( LANGUAGE ),
     CampaignName: CampaignName,
     BannerName: BannerName
 } ) );
