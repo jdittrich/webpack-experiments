@@ -1,6 +1,9 @@
 /*jshint latedef: nofunc */
 /*jshint unused: false */
 /* globals mw, alert */
+
+var $ = require( 'jquery' );
+
 module.exports = function ( GlobalBannerSettings, Translations, bannerCloseTrackRatio ) {
 var finalDateTime = new Date( 2017, 11, 31, 23, 59, 59 ),
 	baseDate = GlobalBannerSettings[ 'donations-date-base' ] || '2017-11-01',
@@ -275,21 +278,6 @@ function validateForm() {
 		error = false,
 		amount;
 
-	switch ( chkdPayment ) {
-		case 'BEZ':
-			$( '#form-page' ).val( 'Formularseite2-Lastschrift' );
-			break;
-		case 'UEB':
-			$( '#form-page' ).val( 'Formularseite2-Überweisung' );
-			break;
-		case 'PPL':
-			$( '#form-page' ).val( 'Formularseite2-PayPal' );
-			break;
-		case 'MCP':
-			$( '#form-page' ).val( 'Formularseite2-Micropayment' );
-			break;
-	}
-
 	if ( !validateAndSetPeriod() ) {
 		return false;
 	}
@@ -524,15 +512,20 @@ function getRemainingDonorsNeeded( averageDonation ) {
 
 function getSkin() {
 	if ( onMediaWiki() ) {
-		return mw.config.get( 'skin' );
+		return window.mw.config.get( 'skin' );
 	}
 	return 'vector';
 }
 
 function onMediaWiki() {
-	return typeof mw === 'object' && typeof mw.centralNotice !== 'undefined';
+	return typeof window.mw === 'object' && typeof window.mw.centralNotice !== 'undefined';
 }
-return {
 
+return {
+	onMediaWiki: onMediaWiki,
+	getSkin: getSkin,
+	validateForm: validateForm,
+	increaseImpCount: increaseImpCount,
+	increaseBannerImpCount: increaseBannerImpCount
 }
 }

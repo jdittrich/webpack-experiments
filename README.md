@@ -45,3 +45,7 @@ Until there is an upload tool, you need to copy and paste the compiled banner co
 ## Random ideas
 * Move index.html out of `dist` into `public` folder and use different values for `devServer.contentBase` and `devServer.publicPath` ?
 * Configure Campaign number, campaign prefix and campaign start date to generate file names and tracking info inside banners.
+
+## Notes on possible Banner code improvements
+* Move `addSpace`, `addSpaceInstantly` and `displayBanner` to module `BannerDisplay`. Move all the different ways of showing banners (overlay or scrollable, instant on, rollo and mini nag banner) into the new module. Remove similar functions from `DesktopBanner.js`. Add the 7.5 seconds delay as default but make delay configurable (for preview).
+* Move form initialization and validation code to module `FormValidation`. Form elements (jQuery objects) should be passed in as constructor params. Also move validation functions from `DesktopBanner.js` into the new module.
