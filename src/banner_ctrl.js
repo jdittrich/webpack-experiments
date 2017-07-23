@@ -175,12 +175,12 @@ function calculateLightboxPosition() {
     $( '#wlightbox' ).css( { right: ( $('body').width() - 750 ) / 2 + 'px', top: '20px', top: ( $( '#WMDE_Banner' ).height() + 20 ) + 'px' } );
 }
 
-/*
+
 var impCount = BannerFunctions.increaseImpCount();
 $( '#impCount' ).val( impCount );
 var bannerImpCount = BannerFunctions.increaseBannerImpCount( BannerName );
 $( '#bImpCount' ).val( bannerImpCount );
-*/
+
 
 $( function () {
   if ( BannerFunctions.onMediaWiki() && window.mw.config.get( 'wgAction' ) !== "view" ) {
