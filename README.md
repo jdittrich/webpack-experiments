@@ -40,7 +40,7 @@ Until there is an upload tool, you need to copy and paste the compiled banner co
 - [x] Add production config for webpack
 - [x] Test how webpack handles JavaScript that calls jQuery without requiring it.
 - [ ] Create upload plugin that wraps the generated JS (see above) and sends it to CentralNotice
-- [ ] Add Dockerfile
+- [ ] Add Dockerfile with installed npm >= 5.x, check in npm lock file
 
 ## Random ideas
 * Move index.html out of `dist` into `public` folder and use different values for `devServer.contentBase` and `devServer.publicPath` ?
@@ -51,3 +51,6 @@ Until there is an upload tool, you need to copy and paste the compiled banner co
 * Move form initialization and validation code to module `FormValidation`. Form elements (jQuery objects) should be passed in as constructor params. Also move validation functions from `DesktopBanner.js` into the new module.
 * Move date/time-based campaign data counting (donors, donations, campaign day, special day name, normal day name, prefix for day name) from `DesktopBanner.js`, `custom_day_name.js` and `count_campaign_days.js` into module.
 * Refactor `DesktopBanner.js` and `count_campaign_days` to longer require parameters after `require`. Use classes with constructor parameters instead.
+* Structure banner initialization into functions, call them one after each other. Select Banner object only once and use its `find` method with all other jQuery selections.
+* Re-Implement/Refactor wlightbox module without the need for global jQuery object and get rid of `ProvidePlugin` in webpack config.
+* Custom tracking class for tracking click and other events

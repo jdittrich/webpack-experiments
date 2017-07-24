@@ -4,7 +4,7 @@
 
 var $ = require( 'jquery' );
 
-module.exports = function ( GlobalBannerSettings, Translations, bannerCloseTrackRatio ) {
+module.exports = function ( GlobalBannerSettings, Translations ) {
 var finalDateTime = new Date( 2017, 11, 31, 23, 59, 59 ),
 	baseDate = GlobalBannerSettings[ 'donations-date-base' ] || '2017-11-01',
 	collectedBase = parseInt( GlobalBannerSettings.collectedBase || 0, 10 ),
@@ -17,7 +17,6 @@ var finalDateTime = new Date( 2017, 11, 31, 23, 59, 59 ),
 	amountTooHighMessage = Translations[ 'amount-too-high-message' ] || 'Der Spendenbetrag ist zu hoch.',
 	allBannersImpCookie = 'centralnotice_banner_impression_count',
 	singleBannerImpCookie = 'centralnotice_single_banner_impression_count',
-	bannerCloseTrackRatio = bannerCloseTrackRatio || 0.01,
 	showBanner = true,
 	BannerEventHandlers = BannerEventHandlers || {},
 	messages = {
@@ -59,48 +58,6 @@ function initializeBannerEvents() {
 		banner.trigger( 'validation:init', banner.data( 'validation-event-handling' ) );
 	}
 }
-
-
-$( function () {
-	$( '#WMDE_Banner-close' ).click( function () {
-		if ( Math.random() < bannerCloseTrackRatio ) {
-			$( '#WMDE_Banner-close-ct' ).attr( 'src', 'https://tracking.wikimedia.de/piwik/piwik.php?idsite=1&url=https://spenden.wikimedia.de/banner-closed/{{{BannerName}}}&rec=1' );
-		}
-		$( '#WMDE_Banner' ).hide();
-		mw.centralNotice.hideBanner();
-		removeBannerSpace();
-
-		return false;
-	} );
-
-	// hide banner when the visual editor is initialized
-	$( '#ca-ve-edit, .mw-editsection-visualeditor' ).click( function () {
-		$( '#WMDE_Banner' ).hide();
-		removeBannerSpace();
-	} );
-
-	// TODO: remove when all banners use custom events
-	$( '#amount-other-input, #amount_other' ).on( 'click', BannerEventHandlers.handleCustomAmount  );
-
-	// Does not work in current banners because the input field is hidden - remove whan all banners use custom event
-	$( 'input:radio[name=betrag_auswahl]' ).on( 'click', BannerEventHandlers.handleAmountSelected  );
-
-	$( '#interval_tab_onetime, #interval_onetime' ).on( 'click', function () {
-		hideFrequencyError();
-		$( '#interval_onetime' ).prop( 'checked', true );
-		$( '#interval_multiple' ).prop( 'checked', false );
-	}  );
-
-	$( '#interval_tab_multiple, #interval_multiple' ).on( 'click', function () {
-		$( '#interval_multiple' ).prop( 'checked', true );
-		$( '#interval_onetime' ).prop( 'checked', false );
-	} );
-	$( '.donation-interval' ).on( 'click', function () {
-		hideFrequencyError();
-	} );
-
-	initializeBannerEvents();
-} );
 
 function getDaysLeft() {
 	var daysLeft = Math.floor( new Date( finalDateTime - new Date() ) / 1000 / 60 / 60 / 24 );
@@ -519,6 +476,9 @@ return {
 	increaseImpCount: increaseImpCount,
 	increaseBannerImpCount: increaseBannerImpCount,
 	getDaysRemaining: getDaysRemaining,
-	getCurrentGermanDay: getCurrentGermanDay
+	getCurrentGermanDay: getCurrentGermanDay,
+	initializeBannerEvents: initializeBannerEvents,
+	hideAmountError: hideAmountError,
+	hideFrequencyError: hideFrequencyError
 }
 }

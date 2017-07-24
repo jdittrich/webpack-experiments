@@ -17,11 +17,10 @@ const fundraisingBanner = {};
 const DevGlobalBannerSettings = require( './GlobalBannerSettings' );
 const GlobalBannerSettings = window.GlobalBannerSettings || DevGlobalBannerSettings;
 const Translations = {}; // will only be needed for English banner, German defaults are in DesktopBanner
-const BannerFunctions = require( './DesktopBanner' )( GlobalBannerSettings, Translations, bannerCloseTrackRatio );
+const BannerFunctions = require( './DesktopBanner' )( GlobalBannerSettings, Translations );
 const SizeIssues = require( './track_size_issues' );
 const getCampaignDaySentence = require( './count_campaign_days' )( GlobalBannerSettings[ 'campaign-start-date' ], GlobalBannerSettings[ 'campaign-end-date' ] );
 const getCustomDayName = require( './custom_day_name' );
-// TODO wlightbox.js
 
 // TODO progress bar partial, css and JS
 
@@ -79,11 +78,13 @@ function setupAmountEventHandling() {
           $( '#WMDE_Banner-amounts' ).find( 'label' ).removeClass( 'checked' );
           $( '#amount-other-input' ).parent().removeClass( 'checked' );
           $( evt.target ).addClass( 'checked' );
+          $( '#WMDE_Banner' ).trigger( 'validation:amount:ok' );
       } );
 
       banner.on( 'amount:custom', null, function( evt ) {
           $( '#WMDE_Banner-amounts' ).find( 'label' ).removeClass( 'checked' );
           $( evt.target ).parent().addClass( 'checked' );
+          $( '#WMDE_Banner' ).trigger( 'validation:amount:ok' );
       } );
 }
 
@@ -119,6 +120,23 @@ $( '#WMDE_Banner-amounts' ).find( 'label' ).click( function () {
 $( '#amount-other-input' ).change( function () {
   $( this ).trigger( 'amount:custom' );
 } );
+
+$( '#interval_onetime' ).on( 'click', function () {
+    BannerFunctions.hideFrequencyError();
+    $( '#interval_onetime' ).prop( 'checked', true );
+    $( '#interval_multiple' ).prop( 'checked', false );
+}  );
+
+$( '#interval_multiple' ).on( 'click', function () {
+    $( '#interval_multiple' ).prop( 'checked', true );
+    $( '#interval_onetime' ).prop( 'checked', false );
+} );
+$( '.donation-interval' ).on( 'click', function () {
+    BannerFunctions.hideFrequencyError();
+} );
+
+BannerFunctions.initializeBannerEvents();
+
 
 // END form init code
 
@@ -162,7 +180,10 @@ function addSpaceInstantly() {
 function displayBanner() {
   var bannerElement = $( '#WMDE_Banner' ),
       bannerHeight = bannerElement.height();
+
+  setupValidationEventHandling();
   setupAmountEventHandling();
+
   $( 'body' ).prepend( $( '#centralNotice' ) );
   bannerElement.css( 'top', -bannerHeight );
   bannerElement.css( 'display', 'block' );
@@ -176,29 +197,51 @@ function displayBanner() {
 }
 
 function calculateLightboxPosition() {
-    $( '#wlightbox' ).css( { right: ( $('body').width() - 750 ) / 2 + 'px', top: '20px', top: ( $( '#WMDE_Banner' ).height() + 20 ) + 'px' } );
+    $( '#wlightbox' ).css( {
+        right: ( $('body').width() - 750 ) / 2 + 'px', top: '20px',
+        top: ( $( '#WMDE_Banner' ).height() + 20 ) + 'px'
+    } );
 }
-
 
 var impCount = BannerFunctions.increaseImpCount();
 $( '#impCount' ).val( impCount );
 var bannerImpCount = BannerFunctions.increaseBannerImpCount( BannerName );
 $( '#bImpCount' ).val( bannerImpCount );
 
-
-$( function () {
-  if ( BannerFunctions.onMediaWiki() && window.mw.config.get( 'wgAction' ) !== "view" ) {
-    return;
-  }
-  setupValidationEventHandling();
-  setTimeout( displayBanner, $( '#WMDE-BannerPreview' ).data( 'delay' ) || 7500 );
-
-} );
-
+// Lightbox
 $( '#application-of-funds-link' ).wlightbox( {
     container: $( '#mw-page-base' ),
     right: ( $('body').width() - 750 ) / 2 + 'px',
     top: function() {
         return ( $( '#WMDE_Banner' ).height() + 20 ) + 'px';
     }
+} );
+
+// TODO track lightbox link clicking and banner closing
+
+// BEGIN Banner close functions
+$( '#WMDE_Banner-close' ).click( function () {
+    $( '#WMDE_Banner' ).hide();
+    if ( BannerFunctions.onMediaWiki() ) {
+        mw.centralNotice.hideBanner();
+    }
+    removeBannerSpace();
+
+    return false;
+} );
+
+// hide banner when the visual editor is initialized
+$( '#ca-ve-edit, .mw-editsection-visualeditor' ).click( function () {
+    $( '#WMDE_Banner' ).hide();
+    removeBannerSpace();
+} );
+
+// END Banner close functions
+
+// Display banner on load
+$( function () {
+  if ( BannerFunctions.onMediaWiki() && window.mw.config.get( 'wgAction' ) !== "view" ) {
+    return;
+  }
+  setTimeout( displayBanner, $( '#WMDE-BannerPreview' ).data( 'delay' ) || 7500 );
 } );
