@@ -53,4 +53,3 @@ Until there is an upload tool, you need to copy and paste the compiled banner co
 * Refactor `DesktopBanner.js` and `count_campaign_days` to longer require parameters after `require`. Use classes with constructor parameters instead.
 * Structure banner initialization into functions, call them one after each other. Select Banner object only once and use its `find` method with all other jQuery selections.
 * Re-Implement/Refactor wlightbox module without the need for global jQuery object and get rid of `ProvidePlugin` in webpack config.
-* Custom tracking class for tracking click and other events

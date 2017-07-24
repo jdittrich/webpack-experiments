@@ -6,6 +6,7 @@ require( './DesktopBannerOverride.css' );
 
 // BEGIN Banner-Specific configuration
 const bannerCloseTrackRatio = 0.01;
+const sizeIssueTrackRatio = 1;
 const CampaignName = 'C17_02_170724';
 const BannerName = 'B17_02_170724_ctrl-test';
 const LANGUAGE = 'de';
@@ -21,6 +22,7 @@ const BannerFunctions = require( './DesktopBanner' )( GlobalBannerSettings, Tran
 const SizeIssues = require( './track_size_issues' );
 const getCampaignDaySentence = require( './count_campaign_days' )( GlobalBannerSettings[ 'campaign-start-date' ], GlobalBannerSettings[ 'campaign-end-date' ] );
 const getCustomDayName = require( './custom_day_name' );
+const TrackingEvents = require( './TrackingEvents' );
 
 // TODO progress bar partial, css and JS
 
@@ -46,6 +48,8 @@ $banner.html( bannerTemplate( {
 } ) );
 
 // BEGIN form init code
+
+const trackingLinkGenerator = new TrackingEvents( BannerName, $( '#WMDE_Banner-close-ct' ) );
 
 function setupValidationEventHandling() {
   var banner = $( '#WMDE_Banner' );
@@ -149,7 +153,11 @@ function addSpace() {
 
   switch ( skin ) {
     case 'vector':
-      SizeIssues.trackSizeIssues( $( 'div#WMDE_Banner' ) );
+      SizeIssues.trackSizeIssues(
+          $( 'div#WMDE_Banner' ),
+          trackingLinkGenerator.getTrackingURL( 'banner-size-issue' ),
+          sizeIssueTrackRatio
+      );
       $( '#mw-panel' ).animate( {'top':bannerHeight + 160},1000 );
       $( '#mw-head' ).animate( {'top':bannerHeight},1000 );
       $( '#mw-page-base' ).animate( {'padding-top':bannerHeight},1000);
@@ -175,6 +183,10 @@ function addSpaceInstantly() {
       $( '#mw-mf-viewport' ).css( { top: bannerHeight } );
       break;
   }
+}
+
+function removeBannerSpace() {
+    // TODO test with real Wikpedia assets, check if we need to remove banner space.
 }
 
 function displayBanner() {
@@ -217,7 +229,11 @@ $( '#application-of-funds-link' ).wlightbox( {
     }
 } );
 
-// TODO track lightbox link clicking and banner closing
+// track lightbox link clicking and banner closing
+trackingLinkGenerator.trackClickEvent( $( '#application-of-funds-link' ), 'application-of-funds-lightbox-opened' );
+trackingLinkGenerator.trackClickEvent( $( '#link-wmf-annual-plan' ), 'wmf-annual-plan' );
+trackingLinkGenerator.trackClickEvent( $( '#link-wmde-annual-plan' ), 'wmde-annual-plan' );
+trackingLinkGenerator.trackClickEvent( $( '#WMDE_Banner-close' ), 'wmde-annual-plan', 'banner-closed', bannerCloseTrackRatio );
 
 // BEGIN Banner close functions
 $( '#WMDE_Banner-close' ).click( function () {

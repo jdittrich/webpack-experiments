@@ -1,3 +1,5 @@
+const $ = require( 'jquery' );
+
 /**
  * Get number of pixels remaining in viewport after the banner height was subtracted.
  * @param jQuery bannerElement
@@ -11,15 +13,14 @@ const getVisibleWikipedia = function ( bannerElement ) {
  * Check if Banner takes too much screen space and track the incident
  * @param jQuery bannerElement
  */
-const trackSizeIssues = function( bannerElement ) {
+const trackSizeIssues = function( bannerElement, trackingLink, trackRatio ) {
     var bannerHeight = bannerElement.height(),
         viewportHeight = $( window ).height(),
         viewportWidth = $( window ).width(),
-        trackRatio = parseFloat( '{{{track-space-ratio}}}' ) || 0.01,
         threshold = 180, // Pixels
         resolutions = '';
 
-    if ( getVisibleWikipedia( bannerElement )  > threshold ) {
+    if ( getVisibleWikipedia( bannerElement ) > threshold ) {
         return;
     }
     if ( Math.random() > trackRatio ) {
@@ -36,8 +37,8 @@ const trackSizeIssues = function( bannerElement ) {
         window.outerWidth + 'x' + window.outerHeight
     ].join( '--' );
 
-    var trackUrl = 'https://spenden.wikimedia.de/banner-size-issue/{{{BannerName}}}/' + resolutions;
-    bannerElement.append( $( '<img id="WMDE_Banner-track-sizes" width="1" height="1">').attr( 'src', 'https://tracking.wikimedia.de/piwik.php?idsite=1&rec=1&url=' + trackUrl ) );
+    var trackUrl = trackingLink + resolutions;
+    bannerElement.append( $( '<img id="WMDE_Banner-track-sizes" width="1" height="1">' ).attr( 'src', trackUrl ) );
 }
 
 module.exports = {
