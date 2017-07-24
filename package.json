@@ -10,8 +10,9 @@
     "start": "webpack-dev-server"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "gabriel.birke@wikimedia.de",
+  "license": "MIT",
+  "repository": "https://github.com/gbirke/webpack-experiments",
   "devDependencies": {
     "css-loader": "^0.28.4",
     "handlebars": "^4.0.10",
