@@ -1,13 +1,16 @@
 require( './DesktopBanner.css' );
 require( './icons.css' );
 require( './wlightbox.css' );
-require( './DesktopBannerOverride.css' ); // this was formally in-banner CSS. TODO: Merge with Desktopbanner, only keep override CSS
+// this was formally in-banner CSS. TODO: Merge with Desktopbanner, only keep override CSS
+require( './DesktopBannerOverride.css' );
 
 // BEGIN Banner-Specific configuration
 const bannerCloseTrackRatio = 0.01;
 const CampaignName = 'C17_02_170724';
 const BannerName = 'B17_02_170724_ctrl-test';
 const LANGUAGE = 'de';
+
+// END Banner-Specific configuration
 
 const fundraisingBanner = {};
 
@@ -25,6 +28,7 @@ const getCustomDayName = require( './custom_day_name' );
 const bannerTemplate = require('./banner_ctrl.hbs');
 
 const $ = require( 'jquery' );
+require( './wlightbox.js' );
 
 const customDayName = getCustomDayName( BannerFunctions.getCurrentGermanDay, LANGUAGE );
 const currentDayName = BannerFunctions.getCurrentGermanDay();
@@ -191,4 +195,10 @@ $( function () {
 
 } );
 
-// TODO lightbox initialization code from banner
+$( '#application-of-funds-link' ).wlightbox( {
+    container: $( '#mw-page-base' ),
+    right: ( $('body').width() - 750 ) / 2 + 'px',
+    top: function() {
+        return ( $( '#WMDE_Banner' ).height() + 20 ) + 'px';
+    }
+} );
