@@ -1,14 +1,12 @@
 /* Just the layout of components with flexbox */
 .banner {
   display: flex;
-  background: yellow;
 }
 
 .infobox {
   display:flex;
   flex-grow: 1;
   flex-direction: column;
-  background: darkgreen;
   justify-content: space-between;
 }
 
@@ -24,13 +22,14 @@
 }
 
 .form {
-  width:20em;
+  width:15.5em;
   height: 30em;
   flex-shrink: 0;
+  padding-left:1.1em;
 }
 
 .close {
-  font-size: 3em;
+  font-size: 1.5em;
   padding:.125em;
 }
 
@@ -43,6 +42,8 @@
 
 .WMDE-Banner {
   font-family: Arial, Helvetica, Verdana, sans-serif;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+  padding-bottom:0.25em
 }
 
 .infobox {
@@ -117,12 +118,20 @@
 }
 
 .WMDE-Banner-frequency label {
-  flex-basis: 3em;
-  margin: 0;
-  display: inline;
-  border: solid 1px blue;
   padding: 1em;
-  margin:0;
-  flex-shrink: 3
+  flex-grow:1;
+  background: #f8f9fa;
+  border: 1px solid #9aa0a7;
+  border-radius: 2px;
+  padding: .05em 0;
+  line-height: 2em;
+  cursor: pointer;
+  margin: 0.2em 0.05em;
+  text-align: center;
+  font-weight: bold;
+  font-size: .9em;
+}
 
+.donation-frequency-onetime {
+  flex-basis: 100%;
 }

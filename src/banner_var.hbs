@@ -25,29 +25,29 @@
       </div>
     </div>
     <div class="form">
-      <fieldset id="WMDE_Banner-frequency" class="WMDE-Banner-frequency">
-          <label class="WMDE_Banner-btn donation-frequency" for="interval_onetime">
+      <div id="WMDE_Banner-frequency" class="WMDE-Banner-frequency">
+          <label class="WMDE_Banner-btn donation-frequency donation-frequency-onetime">
                 <input type="radio" id="interval_onetime">
                 einmalig
               </label>
-              <label class="WMDE_Banner-btn donation-interval" for="interval1">
+              <label class="WMDE_Banner-btn donation-interval  donation-frequency-monthly">
                 <input type="radio" id="interval1" name="interval" value="1">
                 monatlich
               </label>
-              <label class="WMDE_Banner-btn donation-interval" for="interval3">
+              <label class="WMDE_Banner-btn donation-interval donation-frequency-quarterly">
                 <input type="radio" id="interval3" name="interval" value="3">
                 vierteljährlich
               </label>
 
-              <label class="WMDE_Banner-btn donation-interval" for="interval6">
+              <label class="WMDE_Banner-btn donation-interval donation-frequency-biannual">
                 <input type="radio" id="interval6" name="interval" value="6">
                 halbjährlich
               </label>
-              <label class="WMDE_Banner-btn donation-interval" for="interval12">
+              <label class="WMDE_Banner-btn donation-interval donation-frequency-yearly">
                 <input type="radio" id="interval12" name="interval" value="12">
                 jährlich
               </label>
-      </fieldset>
+      </div>
 
       <fieldset id="WMDE_Banner-amounts" class="cf">
         <span id="WMDE_Banner-amounts-error-text" style="display: none">{{amount-empty-message}}</span>
