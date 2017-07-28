@@ -1,3 +1,25 @@
-.bruce {
-    font-size: 150%;
+.banner {
+  display: flex;
+  background: yellow;
+}
+
+.infobox {
+  display:flex;
+  flex-grow: 1;
+  flex-direction: column;
+  background: darkgreen;
+  justify-content: space-between;
+}
+
+.text {
+  background: silver;
+}
+
+.footer { background: darkgrey; }
+
+.form {
+  width:20em;
+  height: 30em;
+  flex-shrink: 0;
+  background: blue;
 }
