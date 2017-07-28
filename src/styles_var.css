@@ -23,3 +23,10 @@
   flex-shrink: 0;
   background: blue;
 }
+
+.close {
+  font-size: 3em;
+  padding:.125em;
+}
+
+/* Old Banner code */
