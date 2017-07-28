@@ -20,7 +20,7 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content:flex-start;
 }
 
 .form {
@@ -94,4 +94,35 @@
 .application-of-funds {
   flex-grow: 1;
   text-align: right;
+}
+
+
+/* Form styling */
+
+.form fieldset {
+    border: 0;
+    margin: 0 auto;
+    padding: 0 0.5em 0.5em 0.5em;
+}
+
+.WMDE-Banner-frequency input[type=radio] {
+  display: none;
+}
+
+.WMDE-Banner-frequency {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.WMDE-Banner-frequency label {
+  flex-basis: 3em;
+  margin: 0;
+  display: inline;
+  border: solid 1px blue;
+  padding: 1em;
+  margin:0;
+  flex-shrink: 3
+
 }

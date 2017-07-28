@@ -25,7 +25,102 @@
       </div>
     </div>
     <div class="form">
-      Form elements here
+      <fieldset id="WMDE_Banner-frequency" class="WMDE-Banner-frequency">
+          <label class="WMDE_Banner-btn donation-frequency" for="interval_onetime">
+                <input type="radio" id="interval_onetime">
+                einmalig
+              </label>
+              <label class="WMDE_Banner-btn donation-interval" for="interval1">
+                <input type="radio" id="interval1" name="interval" value="1">
+                monatlich
+              </label>
+              <label class="WMDE_Banner-btn donation-interval" for="interval3">
+                <input type="radio" id="interval3" name="interval" value="3">
+                vierteljährlich
+              </label>
+
+              <label class="WMDE_Banner-btn donation-interval" for="interval6">
+                <input type="radio" id="interval6" name="interval" value="6">
+                halbjährlich
+              </label>
+              <label class="WMDE_Banner-btn donation-interval" for="interval12">
+                <input type="radio" id="interval12" name="interval" value="12">
+                jährlich
+              </label>
+      </fieldset>
+
+      <fieldset id="WMDE_Banner-amounts" class="cf">
+        <span id="WMDE_Banner-amounts-error-text" style="display: none">{{amount-empty-message}}</span>
+        <ul>
+          <li id="amount_total_1">
+            <input type="radio" name="betrag_auswahl" id="field-amount_total_1" value="5">
+            <label id="amount_label_1" class="WMDE_Banner-btn predefined_amount" for="field-amount_total_1">5 €</label>
+          </li>
+
+          <li id="amount_total_2">
+            <input type="radio" name="betrag_auswahl" id="field-amount_total_2" value="15">
+            <label id="amount_label_2" class="WMDE_Banner-btn predefined_amount" for="field-amount_total_2">15 €</label>
+          </li>
+
+          <li id="amount_total_3">
+            <input type="radio" name="betrag_auswahl" id="field-amount_total_3" value="25">
+            <label id="amount_label_3" class="WMDE_Banner-btn predefined_amount" for="field-amount_total_3">25 €</label>
+          </li>
+
+          <li id="amount_total_4">
+            <input type="radio" name="betrag_auswahl" id="field-amount_total_4" value="50">
+            <label id="amount_label_4" class="WMDE_Banner-btn predefined_amount" for="field-amount_total_4">50 €</label>
+          </li>
+        </ul>
+        <ul>
+          <li id="amount_total_5">
+            <input type="radio" name="betrag_auswahl" id="field-amount_total_5" value="75">
+            <label id="amount_label_5" class="WMDE_Banner-btn predefined_amount" for="field-amount_total_5">75 €</label>
+          </li>
+
+          <li id="amount_total_6">
+            <input type="radio" name="betrag_auswahl" id="field-amount_total_6" value="100">
+            <label id="amount_label_6" class="WMDE_Banner-btn predefined_amount" for="field-amount_total_6">100 €</label>
+          </li>
+
+          <li id="amount_total_7">
+            <input type="radio" name="betrag_auswahl" id="field-amount_total_7" value="250">
+            <label id="amount_label_7" class="WMDE_Banner-btn predefined_amount" for="field-amount_total_7">250 €</label>
+          </li>
+
+          <li id="amount_custom">
+            <input type="text" name="amountGiven" id="amount-other-input" size="3" autocomplete="off" value="" placeholder="anderer">
+          </li>
+        </ul>
+      </fieldset>
+
+      <fieldset id="WMDE_Banner-payment" class="cf">
+        <ul>
+          <li>
+            <button class="WMDE_Banner-btn btn-payment-type" onclick="$('#zahlweise').val('BEZ');">
+              Lastschrift
+            </button>
+          </li>
+
+          <li>
+            <button class="WMDE_Banner-btn btn-payment-type" onclick="$('#zahlweise').val('UEB');">
+              Überweisung
+            </button>
+          </li>
+          <li>
+            <button class="WMDE_Banner-btn btn-payment-type" onclick="$('#zahlweise').val('MCP');">
+              Kreditkarte
+            </button>
+          </li>
+
+          <li>
+            <button class="WMDE_Banner-btn btn-payment-type" onclick="$('#zahlweise').val('PPL');">
+              PayPal
+            </button>
+          </li>
+
+        </ul>
+      </fieldset>
     </div>
     <div class="close">
       X
