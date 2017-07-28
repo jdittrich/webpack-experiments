@@ -120,18 +120,27 @@
 .WMDE-Banner-frequency label {
   padding: 1em;
   flex-grow:1;
-  background: #f8f9fa;
-  border: 1px solid #9aa0a7;
   border-radius: 2px;
   padding: .05em 0;
   line-height: 2em;
   cursor: pointer;
   margin: 0.2em 0.05em;
+}
+
+.WMDE-Banner-frequency label .state {
+  background: #f8f9fa;
+  border: 1px solid #9aa0a7;
+  display: block;
   text-align: center;
   font-weight: bold;
   font-size: .9em;
 }
 
+.WMDE-Banner-frequency label :checked + .state {
+  background: #2a4b8d;
+  border-color: #7d8389;
+  color: #ffffff;
+}
 .donation-frequency-onetime {
   flex-basis: 100%;
 }
