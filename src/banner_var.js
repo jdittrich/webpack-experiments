@@ -1,5 +1,8 @@
 require( './styles_var.css' );
-var bcontent = require('./banner_var.html');
+
+
+
+const bannerTemplate = require('./banner_var.hbs');
 
 var banner = document.getElementById( 'banner' );
-banner.innerHTML = bcontent;
+banner.innerHTML = bannerTemplate();

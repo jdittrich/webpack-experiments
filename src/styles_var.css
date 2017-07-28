@@ -1,3 +1,4 @@
+/* Just the layout of components with flexbox */
 .banner {
   display: flex;
   background: yellow;
@@ -12,16 +13,20 @@
 }
 
 .text {
-  background: silver;
+
 }
 
-.footer { background: darkgrey; }
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 .form {
   width:20em;
   height: 30em;
   flex-shrink: 0;
-  background: blue;
 }
 
 .close {
@@ -29,4 +34,64 @@
   padding:.125em;
 }
 
-/* Old Banner code */
+.bankname, .iban, .bic {
+
+}
+
+
+/* Styling, from old banner code, but cleaned up */
+
+.WMDE-Banner {
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+
+.infobox {
+  border: 5px solid #990000;
+  border-radius: 9px;
+  background-color: #f8f9fa;
+  padding: 0 0.5em 0 2em;
+}
+
+.text {
+  color: #000;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 1.2em;
+  text-align: left;
+}
+
+.text p {
+  margin: .25em 0;
+}
+
+.text p .highlight {
+  border-bottom: solid 3px #990000;
+  padding: 0 .1em;
+  background:transparent;
+}
+
+.footer {
+  border-top: 1px solid #990000;
+  padding-top:0.025em
+}
+
+.ucase {
+    text-transform: uppercase;
+}
+
+.footer span {
+  margin-right: .5em;
+}
+
+.bankdata-important {
+  font-weight: bold;
+}
+
+.bankname, .iban, .bic, .application-of-funds {
+  white-space: nowrap;
+}
+
+.application-of-funds {
+  flex-grow: 1;
+  text-align: right;
+}
