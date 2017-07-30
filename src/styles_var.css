@@ -144,3 +144,50 @@
 .donation-frequency-onetime {
   flex-basis: 100%;
 }
+
+fieldset#WMDE_Banner-amounts{
+  padding:0;
+
+}
+
+#WMDE_Banner-amounts ul  {
+  background: yellow;
+  padding:0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#WMDE_Banner-amounts ul li{
+  flex-grow: 1;
+}
+
+#WMDE_Banner-amounts ul input[type="radio"] {
+  display: none;
+}
+
+#WMDE_Banner-amounts ul input[type="radio"] + label {
+  background: #f8f9fa;
+  border: 1px solid #9aa0a7;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: .9em;
+  padding:0.3em;
+  margin:0.3em;
+
+}
+
+#WMDE_Banner-amounts ul input[type="radio"]:checked + label {
+  background:green;
+  color:white;
+}
+
+#amount-other-input {
+  border: 1px solid green;
+  vertical-align:center;
+  display: inline-block;
+}
